@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
+import { HiMenu } from "react-icons/hi";
 import { IoGameController } from "react-icons/io5";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const NavBar = () => {
   const [loading, setLoading] = useState(true); // Add loading state
+  const [menuOpen, setMenuOpen] = useState(false); // Track mobile menu state
   const { user, handleLogOut } = useContext(AuthContext);
 
-  // Simulating async user data fetching for the example (you can remove it if not needed)
   useEffect(() => {
     if (user) {
       setLoading(false); // Set loading to false once user data is loaded
@@ -15,11 +16,11 @@ const NavBar = () => {
   }, [user]);
 
   const List = (
-    <ul className="menu menu-horizontal px-1">
+    <ul className="menu menu-horizontal px-1 space-x-4">
       <li>
         <NavLink
           to="/"
-          className="text-[#fbbd05] hover:text-[#d99d04] font-semibold"
+          className="text-[#fbbd05] hover:text-[#d99d04] font-semibold transition-all duration-300"
         >
           Home
         </NavLink>
@@ -27,7 +28,7 @@ const NavBar = () => {
       <li>
         <NavLink
           to="/allReviews"
-          className="text-[#fbbd05] hover:text-[#d99d04] font-semibold"
+          className="text-[#fbbd05] hover:text-[#d99d04] font-semibold transition-all duration-300"
         >
           All Reviews
         </NavLink>
@@ -35,7 +36,7 @@ const NavBar = () => {
       <li>
         <NavLink
           to="/addReview"
-          className="text-[#fbbd05] hover:text-[#d99d04] font-semibold"
+          className="text-[#fbbd05] hover:text-[#d99d04] font-semibold transition-all duration-300"
         >
           Add Review
         </NavLink>
@@ -43,7 +44,7 @@ const NavBar = () => {
       <li>
         <NavLink
           to="/myReview"
-          className="text-[#fbbd05] hover:text-[#d99d04] font-semibold"
+          className="text-[#fbbd05] hover:text-[#d99d04] font-semibold transition-all duration-300"
         >
           My Reviews
         </NavLink>
@@ -51,7 +52,7 @@ const NavBar = () => {
       <li>
         <NavLink
           to="/watchList"
-          className="text-[#fbbd05] hover:text-[#d99d04] font-semibold"
+          className="text-[#fbbd05] hover:text-[#d99d04] font-semibold transition-all duration-300"
         >
           Watch List
         </NavLink>
@@ -60,17 +61,40 @@ const NavBar = () => {
   );
 
   return (
-    <div className="navbar bg-gray-100 transition-all duration-500 w-11/12 mx-auto">
-      <div className="navbar-start flex items-center ">
+    <div className="navbar bg-gray-100 transition-all duration-500 w-11/12 mx-auto rounded-lg shadow-lg">
+      <div className="navbar-start flex items-center justify-between w-full">
+        {/* Mobile Menu Icon */}
+        <div className="lg:hidden">
+          <button
+            onClick={() => setMenuOpen(!menuOpen)} // Toggle menu visibility
+            className="text-2xl text-[#fbbd05] hover:text-[#d99d04] transition-all duration-300"
+          >
+            <HiMenu />
+          </button>
+        </div>
         {/* Brand Name with Icon */}
-        <IoGameController className="text-3xl text-[#fbbd05] mr-2" />
-        <a className="btn btn-ghost text-2xl font-bold text-[#fbbd05]">
-          Chill Gamer
-        </a>
+        <div className="flex items-center">
+          <IoGameController className="text-3xl hidden md:block text-[#fbbd05] mr-2 transition-all duration-300 hover:scale-110" />
+          <a className="btn hidden md:block lg:block btn-ghost text-2xl font-bold text-[#fbbd05] hover:text-[#d99d04] transition-all duration-300">
+            Chill Gamer
+          </a>
+        </div>
       </div>
-      <div className="navbar-center hidden font-bold lg:flex">{List}</div>
-      <div className="navbar-end">
-        {/* theme change */}
+
+      {/* Centered Navigation Links for Desktop (Hidden on Mobile) */}
+      <div className="navbar-center hidden lg:flex">{List}</div>
+
+      {/* Mobile Menu (Appears only when mobile menu is open) */}
+      <div
+        className={`lg:hidden w-full bg-gray-100 p-4 rounded-lg shadow-lg mt-4 ${
+          menuOpen ? "" : "hidden"
+        }`}
+      >
+        {List}
+      </div>
+
+      <div className="navbar-end flex items-center space-x-4">
+        {/* Theme Change */}
         <label className="grid cursor-pointer place-items-center">
           <input
             type="checkbox"
@@ -107,19 +131,15 @@ const NavBar = () => {
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
           </svg>
         </label>
-        {/* Display User Email */}
-        {user && (
-          <span className="font-semibold text-gray-700 mr-4">{user.email}</span>
-        )}
 
         {/* User Profile and Authentication Menu */}
         <div className="dropdown dropdown-end relative">
           <div
             tabIndex="0"
             role="button"
-            className="btn btn-ghost btn-circle avatar"
+            className="btn btn-ghost btn-circle avatar hover:scale-110 transition-all duration-300"
           >
-            <div className="w-10 rounded-full">
+            <div className="w-10 rounded-full border-2 border-yellow-400">
               {loading ? (
                 <img
                   alt="Default Profile"
@@ -136,25 +156,36 @@ const NavBar = () => {
             </div>
           </div>
 
+          {/* Profile Tooltip */}
+          {user && user.displayName && (
+            <div
+              className="tooltip tooltip-bottom"
+              data-tip={user.displayName}
+            ></div>
+          )}
+
           {/* Dropdown Menu */}
           <ul
             tabIndex="0"
-            className="menu menu-sm z-[1000] absolute dropdown-content bg-white rounded-lg mt-3 w-48 p-2 shadow-lg"
+            className="menu menu-sm z-[1000] absolute dropdown-content bg-white rounded-lg mt-3 w-48 p-2 shadow-lg transition-all duration-300"
           >
             {user ? (
-              <li className="font-semibold">
-                <button
-                  onClick={handleLogOut}
-                  className="w-full py-2 px-4 text-sm bg-red-500 text-white rounded-lg hover:bg-red-600 transition-all duration-200"
-                >
-                  Logout
-                </button>
-              </li>
+              <>
+                <li className="font-semibold">{user.displayName}</li>
+                <li className="font-semibold">
+                  <button
+                    onClick={handleLogOut}
+                    className="w-full py-2 px-4 text-sm bg-red-500 text-white rounded-lg hover:bg-red-600 transition-all duration-200"
+                  >
+                    Logout
+                  </button>
+                </li>
+              </>
             ) : (
               <div className="flex flex-col gap-2">
                 <li>
                   <Link
-                    className="w-full py-2 px-4 text-sm bg-blue-500 text-white rounded-lg text-center hover:bg-blue-600 transition-all duration-200"
+                    className="w-full py-3 px-5 text-base font-semibold text-white rounded-md bg-gradient-to-r from-indigo-600 to-blue-500 hover:bg-indigo-700 transition-all duration-300"
                     to="/auth/login"
                   >
                     Login
@@ -163,7 +194,7 @@ const NavBar = () => {
                 <li>
                   <Link
                     to="/auth/register"
-                    className="w-full py-2 px-4 text-sm bg-gray-700 text-yellow-400 rounded-lg text-center hover:bg-gray-800 transition-all duration-200"
+                    className="w-full py-3 px-5 text-base font-semibold text-yellow-400 rounded-md bg-gradient-to-r from-green-500 to-teal-500 hover:bg-green-600 transition-all duration-300"
                   >
                     Register
                   </Link>

@@ -4,12 +4,15 @@ import { AuthContext } from "../Provider/AuthProvider";
 
 const WatchList = () => {
   const watchListData = useLoaderData();
-  const { gameCover, gameTitle, genre, rating, _id } = { watchListData };
   const { user } = useContext(AuthContext);
-  console.log(user.email);
+
+  // Filter the watch list data based on the logged-in user's email
+  const filteredData = watchListData.filter(
+    (list) => list.userEmail === user?.email
+  );
 
   return (
-    <div className="min-h-screen  text-white py-8">
+    <div className="min-h-screen text-white py-8">
       <div className="container mx-auto px-4">
         {/* Page Title */}
         <div className="mb-8 text-center">
@@ -36,21 +39,30 @@ const WatchList = () => {
             </thead>
             {/* Table Body */}
             <tbody>
-              {watchListData.map((list, index) => (
-                <tr
-                  key={index}
-                  className={`${
-                    index % 2 === 0 ? "bg-gray-700" : "bg-gray-600"
-                  } hover:bg-gray-500 transition-all`}
-                >
-                  {console.log(list.userEmail)}
-                  <td className="text-yellow-400 font-bold">{index + 1}</td>
-                  <td className="font-semibold text-white">{list.gameTitle}</td>
-                  <td className="text-gray-300">{list.genre}</td>
-                  <td className="text-gray-300">{list.publishingYear}</td>
-                  <td className="text-yellow-400 font-bold">{list.rating}</td>
+              {filteredData.length > 0 ? (
+                filteredData.map((list, index) => (
+                  <tr
+                    key={index}
+                    className={`${
+                      index % 2 === 0 ? "bg-gray-700" : "bg-gray-600"
+                    } hover:bg-gray-500 transition-all`}
+                  >
+                    <td className="text-yellow-400 font-bold">{index + 1}</td>
+                    <td className="font-semibold text-white">
+                      {list.gameTitle}
+                    </td>
+                    <td className="text-gray-300">{list.genre}</td>
+                    <td className="text-gray-300">{list.publishingYear}</td>
+                    <td className="text-yellow-400 font-bold">{list.rating}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="5" className="text-center text-gray-500">
+                    No data found
+                  </td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
         </div>

@@ -2,18 +2,20 @@ import { createBrowserRouter } from "react-router-dom";
 import AuthLayout from "../Auth/AuthLayout";
 import Login from "../Auth/Login";
 import Register from "../Auth/Register";
+import ReviewDetails from "../components/ReviewDetails";
 import AddReview from "../Pages/AddReview";
 import ErrorPage from "../Pages/ErrorPage";
-import ReviewDetails from "../components/ReviewDetails";
-import MainLayouts from "./../layouts/MainLayouts";
-import AllReviews from "./../Pages/AllReviews";
 import MyReviews from "../Pages/MyReviews";
 import WatchList from "../Pages/WatchList";
+import MainLayouts from "./../layouts/MainLayouts";
+import AllReviews from "./../Pages/AllReviews";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayouts></MainLayouts>,
+    loader: () => fetch("http://localhost:5000/review"),
   },
   {
     path: "/allReviews",
@@ -51,19 +53,27 @@ const router = createBrowserRouter([
   },
   {
     path: "/myReview",
-    element: <MyReviews></MyReviews>,
+    element: (
+      <PrivateRoute>
+        <MyReviews></MyReviews>
+      </PrivateRoute>
+    ),
   },
   {
     path: "/watchList",
-    element: <WatchList></WatchList>,
-    loader: () => fetch("http://localhost:5000/watchList"),
 
+    element: (
+      <PrivateRoute>
+        <WatchList></WatchList>
+      </PrivateRoute>
+    ),
+
+    loader: () => fetch("http://localhost:5000/watchList"),
   },
   {
     path: "*",
     element: <ErrorPage></ErrorPage>,
   },
-
 ]);
 
 export default router;
