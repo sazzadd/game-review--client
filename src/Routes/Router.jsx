@@ -4,9 +4,11 @@ import Login from "../Auth/Login";
 import Register from "../Auth/Register";
 import AddReview from "../Pages/AddReview";
 import ErrorPage from "../Pages/ErrorPage";
-import ReviewDetails from "../Pages/ReviewDetails";
+import ReviewDetails from "../components/ReviewDetails";
 import MainLayouts from "./../layouts/MainLayouts";
 import AllReviews from "./../Pages/AllReviews";
+import MyReviews from "../Pages/MyReviews";
+import WatchList from "../Pages/WatchList";
 
 const router = createBrowserRouter([
   {
@@ -48,9 +50,20 @@ const router = createBrowserRouter([
     ],
   },
   {
+    path: "/myReview",
+    element: <MyReviews></MyReviews>,
+  },
+  {
+    path: "/watchList",
+    element: <WatchList></WatchList>,
+    loader: () => fetch("http://localhost:5000/watchList"),
+
+  },
+  {
     path: "*",
     element: <ErrorPage></ErrorPage>,
   },
+
 ]);
 
 export default router;

@@ -3,6 +3,7 @@ import { AiOutlineMail } from "react-icons/ai";
 import { FaStar, FaUser } from "react-icons/fa";
 import { GiLaurels } from "react-icons/gi";
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ReviewDetails = () => {
   // Loader data
@@ -25,6 +26,42 @@ const ReviewDetails = () => {
     userName,
   } = review;
 
+  // Handle Add to WatchList
+  const handleAddToWatchList = () => {
+    // Log all required data to the console
+    const watchList = {
+      gameTitle,
+      reviewDescription,
+      rating,
+      publishingYear,
+      genre,
+      userEmail,
+      userName,
+    };
+
+    console.log(watchList);
+    // send data to the server
+    fetch("http://localhost:5000/watchList", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(watchList),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "success!",
+            text: "Review addeed  To WatchList",
+            icon: "success",
+            confirmButtonText: "Cool",
+          });
+        }
+      });
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6 md:flex md:flex-row md:space-x-8 border border-gray-300">
@@ -40,8 +77,12 @@ const ReviewDetails = () => {
         {/* Right Section: Review Details */}
         <div className="mt-6 md:mt-0 w-full md:w-2/3 border border-gray-300 rounded-lg p-4">
           {/* Game Title */}
-          <h2 className="text-3xl font-semibold text-gray-800 mb-2">{gameTitle}</h2>
-          <p className="text-gray-500 text-sm mb-4">Published: {publishingYear}</p>
+          <h2 className="text-3xl font-semibold text-gray-800 mb-2">
+            {gameTitle}
+          </h2>
+          <p className="text-gray-500 text-sm mb-4">
+            Published: {publishingYear}
+          </p>
           <div className="border-t my-3 border-gray-300"></div>
 
           {/* Genre */}
@@ -51,7 +92,9 @@ const ReviewDetails = () => {
           </p>
 
           {/* Review Description */}
-          <p className="text-gray-600 text-base leading-relaxed mb-6">{reviewDescription}</p>
+          <p className="text-gray-600 text-base leading-relaxed mb-6">
+            {reviewDescription}
+          </p>
 
           <div className="border-t my-4 border-gray-300"></div>
 
@@ -70,7 +113,10 @@ const ReviewDetails = () => {
 
           {/* Action Buttons */}
           <div className="flex gap-6 mt-4">
-            <button className="px-6 py-2 text-white bg-[#fbbd05] rounded-md hover:bg-yellow-400 transition-all duration-300">
+            <button
+              onClick={handleAddToWatchList}
+              className="px-6 py-2 text-white bg-[#fbbd05] rounded-md hover:bg-yellow-400 transition-all duration-300"
+            >
               Add to WatchList
             </button>
           </div>

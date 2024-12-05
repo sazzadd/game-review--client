@@ -4,34 +4,34 @@ import { FaGamepad, FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const ReviewCard = ({ reviews }) => {
-  const { gameCover, gameTitle, genre, rating, _id } = reviews;  // এখানে _id পাবেন reviews থেকে
+  const { gameCover, gameTitle, genre, rating, _id } = reviews;
 
   return (
-    <div className="max-w-sm bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-200">
+    <div className="max-w-sm bg-gradient-to-r from-white via-gray-50 to-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-200 overflow-hidden">
       {/* Cover Image */}
       <img
         src={gameCover}
-        alt={gameTitle}
-        className="w-full h-48 object-cover rounded-t-lg"
+        alt={`Cover of ${gameTitle}`}
+        className="w-full h-52 object-cover"
       />
 
       {/* Card Content */}
-      <div className="p-4">
-        <h2 className="text-lg font-bold text-gray-800 flex items-center gap-2">
+      <div className="p-5">
+        <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
           <FaGamepad className="text-[#fbbd05]" /> {gameTitle}
         </h2>
 
-        <p className="text-sm text-gray-600 mt-1 flex items-center gap-1">
-          <BiCategory className="text-yellow-400" /> {genre}
+        <p className="text-sm text-gray-600 mt-2 flex items-center gap-2">
+          <BiCategory className="text-yellow-500" /> Genre: {genre}
         </p>
-        <p className="text-sm text-gray-600 mt-1 flex items-center gap-1">
-          <FaStar className="text-yellow-400" /> {rating} / 10
+        <p className="text-sm text-gray-600 mt-2 flex items-center gap-2">
+          <FaStar className="text-yellow-500" /> Rating: {rating} / 10
         </p>
 
         {/* Explore Details Button */}
         <Link
-          to={`/ReviewDetail/${_id}`}  // এখানে সঠিক রাউট পাথ দেওয়া হয়েছে
-          className="mt-4 w-full py-2 px-4 bg-[#fbbd05] text-white font-semibold rounded-md hover:bg-yellow-400 transition-colors duration-200"
+          to={`/ReviewDetail/${_id}`}
+          className="mt-5 inline-block w-full py-3 px-5 bg-yellow-300 text-gray-800 font-medium rounded-lg text-center hover:bg-yellow-400 transition-all duration-200"
         >
           Explore Details
         </Link>
