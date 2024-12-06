@@ -185,7 +185,7 @@ const NavBar = () => {
               <div className="flex flex-col gap-2">
                 <li>
                   <Link
-                    className="w-full py-3 px-5 text-base font-semibold text-white rounded-md bg-gradient-to-r from-indigo-600 to-blue-500 hover:bg-indigo-700 transition-all duration-300"
+                    className="w-full py-3 px-5 text-base font-semibold text-white rounded-md bg-[#fbbd05] hover:bg-[#e6a800] transition-all duration-300 shadow-md"
                     to="/auth/login"
                   >
                     Login
@@ -194,7 +194,7 @@ const NavBar = () => {
                 <li>
                   <Link
                     to="/auth/register"
-                    className="w-full py-3 px-5 text-base font-semibold text-yellow-400 rounded-md bg-gradient-to-r from-green-500 to-teal-500 hover:bg-green-600 transition-all duration-300"
+                    className="w-full py-3 px-5 text-base font-semibold text-[#fbbd05] border-2 border-[#fbbd05] rounded-md bg-white hover:bg-[#fbbd05] hover:text-white transition-all duration-300 shadow-md"
                   >
                     Register
                   </Link>

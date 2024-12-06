@@ -8,7 +8,7 @@ const WatchList = () => {
 
   // Filter the watch list data based on the logged-in user's email
   const filteredData = watchListData.filter(
-    (list) => list.userEmail === user?.email
+    (list) => list.email === user?.email
   );
 
   return (

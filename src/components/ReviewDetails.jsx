@@ -1,19 +1,22 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { AiOutlineMail } from "react-icons/ai";
 import { FaStar, FaUser } from "react-icons/fa";
 import { GiLaurels } from "react-icons/gi";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const ReviewDetails = () => {
+  const { user } = useContext(AuthContext);
   // Loader data
   const review = useLoaderData();
+  const [loading, setLoading] = useState(false);
 
-  // Check if review data exists
   if (!review) {
     return <div className="text-center text-gray-500">Review not found</div>;
   }
-
+  console.log(user.email);
+  const email = user.email;
   // Destructure review data
   const {
     gameCover,
@@ -22,25 +25,26 @@ const ReviewDetails = () => {
     rating,
     publishingYear,
     genre,
+
     userEmail,
     userName,
   } = review;
 
   // Handle Add to WatchList
   const handleAddToWatchList = () => {
-    // Log all required data to the console
+    if (loading) return; // Prevent duplicate submissions
+    setLoading(true);
+
     const watchList = {
       gameTitle,
       reviewDescription,
       rating,
       publishingYear,
       genre,
-      userEmail,
+      email,
       userName,
     };
 
-    console.log(watchList);
-    // send data to the server
     fetch("http://localhost:5000/watchList", {
       method: "POST",
       headers: {
@@ -50,33 +54,40 @@ const ReviewDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        setLoading(false);
         if (data.insertedId) {
           Swal.fire({
-            title: "success!",
-            text: "Review addeed  To WatchList",
+            title: "Success!",
+            text: "Review added to WatchList",
             icon: "success",
             confirmButtonText: "Cool",
           });
         }
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.error("Error:", error);
+        Swal.fire({
+          title: "Error",
+          text: "There was an issue adding to the WatchList.",
+          icon: "error",
+          confirmButtonText: "Try Again",
+        });
       });
   };
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6 md:flex md:flex-row md:space-x-8 border border-gray-300">
-        {/* Left Section: Game Cover Image */}
         <div className="w-full md:w-1/3 border border-gray-300 rounded-lg shadow-md">
           <img
-            src={gameCover} // Use actual value from review
-            alt={gameTitle} // Use dynamic alt text for better accessibility
+            src={gameCover}
+            alt={gameTitle}
             className="w-full h-72 object-cover rounded-lg"
           />
         </div>
 
-        {/* Right Section: Review Details */}
         <div className="mt-6 md:mt-0 w-full md:w-2/3 border border-gray-300 rounded-lg p-4">
-          {/* Game Title */}
           <h2 className="text-3xl font-semibold text-gray-800 mb-2">
             {gameTitle}
           </h2>
@@ -84,21 +95,15 @@ const ReviewDetails = () => {
             Published: {publishingYear}
           </p>
           <div className="border-t my-3 border-gray-300"></div>
-
-          {/* Genre */}
           <p className="text-gray-600 text-lg font-medium mb-4 flex items-center gap-2">
             <GiLaurels className="text-[#fbbd05]" />
             Genre: {genre}
           </p>
-
-          {/* Review Description */}
           <p className="text-gray-600 text-base leading-relaxed mb-6">
             {reviewDescription}
           </p>
-
           <div className="border-t my-4 border-gray-300"></div>
 
-          {/* Additional Information */}
           <div className="text-gray-600 text-sm mb-4">
             <p className="flex items-center gap-2">
               <FaStar className="text-yellow-500" /> Rating: {rating}/10
@@ -111,13 +116,13 @@ const ReviewDetails = () => {
             </p>
           </div>
 
-          {/* Action Buttons */}
           <div className="flex gap-6 mt-4">
             <button
               onClick={handleAddToWatchList}
+              disabled={loading}
               className="px-6 py-2 text-white bg-[#fbbd05] rounded-md hover:bg-yellow-400 transition-all duration-300"
             >
-              Add to WatchList
+              {loading ? "Adding..." : "Add to WatchList"}
             </button>
           </div>
         </div>

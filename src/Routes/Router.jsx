@@ -3,6 +3,7 @@ import AuthLayout from "../Auth/AuthLayout";
 import Login from "../Auth/Login";
 import Register from "../Auth/Register";
 import ReviewDetails from "../components/ReviewDetails";
+import UpdateReview from "../components/UpdateReview";
 import AddReview from "../Pages/AddReview";
 import ErrorPage from "../Pages/ErrorPage";
 import MyReviews from "../Pages/MyReviews";
@@ -58,6 +59,7 @@ const router = createBrowserRouter([
         <MyReviews></MyReviews>
       </PrivateRoute>
     ),
+    loader: () => fetch("http://localhost:5000/review"),
   },
   {
     path: "/watchList",
@@ -69,6 +71,11 @@ const router = createBrowserRouter([
     ),
 
     loader: () => fetch("http://localhost:5000/watchList"),
+  },
+  {
+    path: "/updateReview/:_id",
+    element: <UpdateReview />,
+    loader: ({ params }) => fetch(`http://localhost:5000/review/${params._id}`),
   },
   {
     path: "*",
