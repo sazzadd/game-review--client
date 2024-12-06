@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
+import NavBar from "../components/NavBar";
 
 const WatchList = () => {
   const watchListData = useLoaderData();
@@ -12,7 +13,11 @@ const WatchList = () => {
   );
 
   return (
-    <div className="min-h-screen text-white py-8">
+    <div className="min-h-screen text-white pb-8">
+      <div className=" pb-8">
+        <NavBar></NavBar>
+      </div>
+
       <div className="container mx-auto px-4">
         {/* Page Title */}
         <div className="mb-8 text-center">

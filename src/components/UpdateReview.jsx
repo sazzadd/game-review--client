@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const UpdateReview = () => {
@@ -22,7 +23,7 @@ const UpdateReview = () => {
     const rating = form.rating.value;
     const publishingYear = form.publishingYear.value;
     const genre = form.genre.value;
-    const review = {
+    const updatedReview = {
       gameCover,
       gameTitle,
       reviewDescription,
@@ -32,6 +33,7 @@ const UpdateReview = () => {
       userEmail,
       userName,
     };
+
     console.log(
       "Submitted Review Data:",
       // gameCover,
@@ -42,29 +44,28 @@ const UpdateReview = () => {
       // genre,
       // userEmail,
       // userName
-      reviews
+      review
     );
-    // fetch("http://localhost:5000/review", {
-    //   method: "PUT",
-    //   headers: {
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify(newReview),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     if (data.insertedId) {
-    //       Swal.fire({
-    //         title: "success!",
-    //         text: "Review addeed successfully",
-    //         icon: "success",
-    //         confirmButtonText: "Cool",
-    //       });
-    //       form.reset();
-    //     }
-    //   });
-    // Add functionality to save or send the review data
+    fetch(`http://localhost:5000/review/${_id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updatedReview),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          Swal.fire({
+            title: "success!",
+            text: "Review Upadted successfully",
+            icon: "success",
+            confirmButtonText: "Cool",
+          });
+          form.reset();
+        }
+      });
   };
 
   return (
@@ -77,7 +78,7 @@ const UpdateReview = () => {
     >
       <div className="bg-opacity-60 bg-black p-8 rounded-md max-w-3xl mx-auto">
         <h1 className="text-4xl font-extrabold text-center mb-8 text-yellow-400 tracking-widest">
-          UpDate Game Reviews
+          {review.gameTitle} UpDate Game Reviews
           <div className="h-1 w-32 bg-yellow-400 mx-auto mt-2"></div>
         </h1>
         <form onSubmit={handleUpdateReview}>
@@ -91,6 +92,7 @@ const UpdateReview = () => {
             <input
               type="url"
               name="gameCover"
+              defaultValue={review.gameCover}
               placeholder="https://example.com/image.jpg"
               className="input input-bordered"
               required
@@ -109,6 +111,7 @@ const UpdateReview = () => {
               name="gameTitle"
               placeholder="Enter game title"
               className="input input-bordered"
+              defaultValue={review.gameTitle}
               required
             />
           </div>
@@ -125,6 +128,7 @@ const UpdateReview = () => {
               placeholder="Write your review here..."
               className="textarea textarea-bordered"
               rows="5"
+              defaultValue={review.reviewDescription}
               required
             ></textarea>
           </div>
@@ -143,6 +147,7 @@ const UpdateReview = () => {
               className="input input-bordered"
               min="1"
               max="10"
+              defaultValue={review.rating}
               required
             />
           </div>
@@ -157,6 +162,7 @@ const UpdateReview = () => {
             <input
               type="number"
               name="publishingYear"
+              defaultValue={review.publishingYear}
               placeholder="E.g., 2023"
               className="input input-bordered"
               min="1900"
@@ -191,7 +197,7 @@ const UpdateReview = () => {
               type="email"
               name="userEmail"
               value={user?.email || ""}
-              className="input input-bordered"
+              className="input input-bordered  text-red-400"
               readOnly
             />
           </div>
@@ -205,7 +211,7 @@ const UpdateReview = () => {
               type="text"
               name="userName"
               value={user?.displayName || "Anonymous"}
-              className="input input-bordered"
+              className="input input-bordered text-red-400"
               readOnly
             />
           </div>

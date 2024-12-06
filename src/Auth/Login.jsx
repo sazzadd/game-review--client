@@ -4,6 +4,7 @@ import { MdEmail } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../Provider/AuthProvider";
+import NavBar from "../components/NavBar";
 
 const Login = () => {
   const { userLogin, GoogleLogin } = useContext(AuthContext);
@@ -80,6 +81,7 @@ const Login = () => {
     <div className="flex flex-col items-center justify-center min-h-screen p-6">
       <div className="w-full max-w-md p-8 shadow-lg border border-gray-300 rounded-lg">
         {/* Heading */}
+       
         <h1 className="text-3xl font-bold text-gray-800 text-center mb-2">
           Welcome Back
         </h1>
