@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
+import { Typewriter } from "react-simple-typewriter";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
 import NavBar from "../components/NavBar";
@@ -15,9 +16,8 @@ const AddReview = () => {
     e.preventDefault();
     const form = e.target;
 
-    // ইউজারের তথ্য সংগ্রহ করা (যদি ইউজার লগ ইন থাকে)
-    const userEmail = user?.email || "Guest"; // যদি `user` না থাকে, তাহলে 'Guest' ডিফল্ট
-    const userName = user?.displayName || "Anonymous"; // একইভাবে নামও চেক করা
+    const userEmail = user?.email || "Guest";
+    const userName = user?.displayName || "Anonymous";
 
     const gameCover = form.gameCover.value;
     const gameTitle = form.gameTitle.value;
@@ -25,6 +25,7 @@ const AddReview = () => {
     const rating = form.rating.value;
     const publishingYear = form.publishingYear.value;
     const genre = form.genre.value;
+
     const newReview = {
       gameCover,
       gameTitle,
@@ -35,18 +36,7 @@ const AddReview = () => {
       userEmail,
       userName,
     };
-    console.log(
-      "Submitted Review Data:",
-      // gameCover,
-      // gameTitle,
-      // reviewDescription,
-      // rating,
-      // publishingYear,
-      // genre,
-      // userEmail,
-      // userName
-      newReview
-    );
+
     fetch("http://localhost:5000/review", {
       method: "POST",
       headers: {
@@ -56,18 +46,16 @@ const AddReview = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.insertedId) {
           Swal.fire({
-            title: "success!",
-            text: "Review addeed successfully",
+            title: "Success!",
+            text: "Review added successfully",
             icon: "success",
             confirmButtonText: "Cool",
           });
           form.reset();
         }
       });
-    // Add functionality to save or send the review data
   };
 
   return (
@@ -78,18 +66,30 @@ const AddReview = () => {
           "url('https://assets.rockpapershotgun.com/images/2020/02/Vanquish-Best-Action-Games-2020.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backdropFilter: "blur(10px)", // Adjust blur as needed
+        backdropFilter: "blur(10px)",
         minHeight: "100vh",
         padding: "2rem",
       }}
     >
       <div className="mb-8">
-        <NavBar></NavBar>
+        <NavBar />
       </div>
 
       <div className="bg-opacity-60 bg-black p-8 rounded-md max-w-3xl mx-auto">
         <h2 className="text-4xl text-center font-bold text-white mb-8">
-          Add Game Review
+          <Typewriter
+            words={[
+              "Add Game Review",
+              "Share Your Thoughts!",
+              "Rate Your Favorite Game",
+            ]}
+            loop={true}
+            cursor
+            cursorStyle="_"
+            typeSpeed={70}
+            deleteSpeed={50}
+            delaySpeed={1000}
+          />
         </h2>
         <form onSubmit={handleAddReview}>
           {/* Game Cover Image/Thumbnail */}
@@ -140,6 +140,7 @@ const AddReview = () => {
             ></textarea>
           </div>
 
+          {/* Other Input Fields */}
           {/* Rating */}
           <div className="form-control mb-6">
             <label className="label">
@@ -176,7 +177,7 @@ const AddReview = () => {
             />
           </div>
 
-          {/* Genres Dropdown */}
+          {/* Genre */}
           <div className="form-control mb-6">
             <label className="label">
               <span className="label-text font-bold text-white">Genre</span>
@@ -191,7 +192,7 @@ const AddReview = () => {
             </select>
           </div>
 
-          {/* User Email (Read Only) */}
+          {/* User Email */}
           <div className="form-control mb-6">
             <label className="label">
               <span className="label-text font-bold text-white">
@@ -207,7 +208,7 @@ const AddReview = () => {
             />
           </div>
 
-          {/* User Name (Read Only) */}
+          {/* User Name */}
           <div className="form-control mb-6">
             <label className="label">
               <span className="label-text font-bold text-white">User Name</span>
@@ -221,7 +222,6 @@ const AddReview = () => {
             />
           </div>
 
-          {/* Submit Button */}
           <input
             type="submit"
             value="Submit Review"
