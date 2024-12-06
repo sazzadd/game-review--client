@@ -3,6 +3,7 @@ import { FaEdit, FaTrashAlt } from "react-icons/fa"; // Import icons
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2"; // For sweet alert
 import { AuthContext } from "../Provider/AuthProvider";
+import NavBar from "../components/NavBar";
 
 const MyReviews = () => {
   const reviews = useLoaderData(); // Fetch reviews data
@@ -52,8 +53,9 @@ const MyReviews = () => {
   };
 
   return (
-    <div className="min-h-screen text-white py-8">
-      <div className="container mx-auto px-4">
+    <div className="min-h-screen text-white pb-8">
+      <NavBar></NavBar>
+      <div className="container mx-auto py-4 px-4">
         {/* Page Title */}
         <div className="mb-8 text-center">
           <h1 className="text-4xl font-bold text-yellow-400">Your Reviews</h1>
@@ -97,7 +99,7 @@ const MyReviews = () => {
                     <td className="flex items-center justify-center gap-2">
                       <Link to={`/updateReview/${list._id}`}>
                         <button className="bg-blue-500 hover:bg-blue-700 text-white px-3 py-2 rounded-md flex items-center gap-1 transition-all">
-                          <FaEdit />
+                          <FaEdit /> Update
                         </button>
                       </Link>
 
@@ -105,7 +107,7 @@ const MyReviews = () => {
                         onClick={() => handleDelete(list._id)}
                         className="bg-red-500 hover:bg-red-700 text-white px-3 py-2 rounded-md flex items-center gap-1 transition-all"
                       >
-                        <FaTrashAlt />
+                        <FaTrashAlt /> Delete
                       </button>
                     </td>
                   </tr>

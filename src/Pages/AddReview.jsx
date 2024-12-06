@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
+import NavBar from "../components/NavBar";
 
 const AddReview = () => {
   const [startDate, setStartDate] = useState(new Date());
@@ -71,12 +72,21 @@ const AddReview = () => {
 
   return (
     <div
-      className="bg-cover bg-center backdrop-blur-md min-h-screen p-8"
+      className="bg-cover bg-center backdrop-blur-md min-h-screen pb-2"
       style={{
         backgroundImage:
           "url('https://assets.rockpapershotgun.com/images/2020/02/Vanquish-Best-Action-Games-2020.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backdropFilter: "blur(10px)", // Adjust blur as needed
+        minHeight: "100vh",
+        padding: "2rem",
       }}
     >
+      <div className="mb-8">
+        <NavBar></NavBar>
+      </div>
+
       <div className="bg-opacity-60 bg-black p-8 rounded-md max-w-3xl mx-auto">
         <h2 className="text-4xl text-center font-bold text-white mb-8">
           Add Game Review
