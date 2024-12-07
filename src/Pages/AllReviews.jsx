@@ -86,13 +86,15 @@ const AllReviews = () => {
           All Game Reviews ({filteredReviews.length})
           <div className="h-1 w-32 bg-yellow-400 mx-auto mt-2"></div>
         </h1>
+    
 
         {/* Filter and Sort Controls */}
-        <div className="mb-6 text-center">
+        <div className="mb-6 text-center space-x-4">
+          {/* Sort Dropdown */}
           <select
             onChange={handleSortChange}
             value={sort}
-            className="bg-gray-800 text-white py-2 px-4 rounded"
+            className="bg-gray-800 text-white py-2 px-6 rounded-md border-2 border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-300 ease-in-out"
           >
             <option value="rating_asc">Rating: Low to High</option>
             <option value="rating_desc">Rating: High to Low</option>
@@ -100,10 +102,11 @@ const AllReviews = () => {
             <option value="year_desc">Year: Newest to Oldest</option>
           </select>
 
+          {/* Genre Dropdown */}
           <select
             onChange={handleGenreChange}
             value={genre}
-            className="bg-gray-800 text-white py-2 px-4 ml-4 rounded"
+            className="bg-gray-800 text-white py-2 px-6 rounded-md border-2 border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-300 ease-in-out"
           >
             <option value="">All Genres</option>
             <option value="Action">Action</option>

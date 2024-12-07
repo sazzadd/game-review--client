@@ -1,5 +1,7 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
+import { Typewriter } from "react-simple-typewriter"; // Import Typewriter
+import Faq from "../components/Faq";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import ReviewCard from "../components/ReviewCard";
@@ -17,18 +19,27 @@ const MainLayouts = () => {
     <div>
       {/* nav */}
       <section>
-        <NavBar></NavBar>
+        <NavBar />
       </section>
 
       {/* banner or slider */}
       <section>
-        <Slider></Slider>
+        <Slider />
       </section>
 
       {/* Highest rated card section */}
       <div className="text-center mb-8">
         <h2 className="text-3xl font-bold text-yellow-400">
-          Highest Rated Games
+          {/* Using Typewriter for animated text */}
+          <Typewriter
+            words={["Highest Rated Games"]}
+            loop={50}
+            cursor
+            cursorStyle="_"
+            typeSpeed={100}
+            deleteSpeed={50}
+            delaySpeed={1500}
+          />
         </h2>
         <p className="mt-2 text-gray-300">
           Explore the top-rated games based on user reviews!
@@ -43,9 +54,10 @@ const MainLayouts = () => {
           ))}
         </div>
       </div>
-
+      {/* EXTAR SECTION 1 */}
+      <Faq></Faq>
       {/* Footer */}
-      <Footer></Footer>
+      <Footer />
     </div>
   );
 };
