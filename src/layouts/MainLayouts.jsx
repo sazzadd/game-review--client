@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import ReviewCard from "../components/ReviewCard";
 import Slider from "../components/Slider";
+import TrendingGenres from "../components/TrendingGenres";
 
 const MainLayouts = () => {
   const reviews = useLoaderData();
@@ -55,6 +56,7 @@ const MainLayouts = () => {
         </div>
       </div>
       {/* EXTAR SECTION 1 */}
+      <TrendingGenres></TrendingGenres>
       <Faq></Faq>
       {/* Footer */}
       <Footer />

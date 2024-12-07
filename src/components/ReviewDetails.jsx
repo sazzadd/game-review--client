@@ -32,7 +32,7 @@ const ReviewDetails = () => {
 
   // Handle Add to WatchList
   const handleAddToWatchList = () => {
-    if (loading) return; // Prevent duplicate submissions
+    if (loading) return;
     setLoading(true);
 
     const watchList = {

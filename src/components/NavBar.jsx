@@ -133,6 +133,7 @@ const NavBar = () => {
         </label>
 
         {/* User Profile and Authentication Menu */}
+        {}
         <div className="dropdown dropdown-end relative">
           <div
             tabIndex="0"
