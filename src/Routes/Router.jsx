@@ -25,7 +25,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/ReviewDetail/:_id",
-    element: <ReviewDetails></ReviewDetails>,
+    element: (
+      <PrivateRoute>
+        <ReviewDetails></ReviewDetails>
+      </PrivateRoute>
+    ),
     // loader: ({ params }) => fetch(`https://coffee-store-server-eight-ashy.vercel.app/coffee/${params.id}`),
     loader: ({ params }) =>
       fetch(`http://localhost:5000/review/${params._id}`)
@@ -35,7 +39,11 @@ const router = createBrowserRouter([
 
   {
     path: "/addReview",
-    element: <AddReview></AddReview>,
+    element: (
+      <PrivateRoute>
+        <AddReview></AddReview>
+      </PrivateRoute>
+    ),
   },
 
   {

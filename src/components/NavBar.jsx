@@ -1,19 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { HiMenu } from "react-icons/hi";
 import { IoGameController } from "react-icons/io5";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const NavBar = () => {
-  const [loading, setLoading] = useState(true); // Add loading state
-  const [menuOpen, setMenuOpen] = useState(false); // Track mobile menu state
+  const [menuOpen, setMenuOpen] = React.useState(false); // Track mobile menu state
   const { user, handleLogOut } = useContext(AuthContext);
-
-  useEffect(() => {
-    if (user) {
-      setLoading(false); // Set loading to false once user data is loaded
-    }
-  }, [user]);
 
   const List = (
     <ul className="menu menu-horizontal px-1 space-x-4">
@@ -62,17 +55,18 @@ const NavBar = () => {
 
   return (
     <div className="navbar bg-gray-100 transition-all duration-500 w-11/12 mx-auto rounded-lg shadow-lg">
+      {/* Navbar Start */}
       <div className="navbar-start flex items-center justify-between w-full">
         {/* Mobile Menu Icon */}
         <div className="lg:hidden">
           <button
-            onClick={() => setMenuOpen(!menuOpen)} // Toggle menu visibility
+            onClick={() => setMenuOpen(!menuOpen)}
             className="text-2xl text-[#fbbd05] hover:text-[#d99d04] transition-all duration-300"
           >
             <HiMenu />
           </button>
         </div>
-        {/* Brand Name with Icon */}
+        {/* Brand Name */}
         <div className="flex items-center">
           <IoGameController className="text-3xl hidden md:block text-[#fbbd05] mr-2 transition-all duration-300 hover:scale-110" />
           <a className="btn hidden md:block lg:block btn-ghost text-2xl font-bold text-[#fbbd05] hover:text-[#d99d04] transition-all duration-300">
@@ -81,10 +75,10 @@ const NavBar = () => {
         </div>
       </div>
 
-      {/* Centered Navigation Links for Desktop (Hidden on Mobile) */}
+      {/* Center Navigation Links */}
       <div className="navbar-center hidden lg:flex">{List}</div>
 
-      {/* Mobile Menu (Appears only when mobile menu is open) */}
+      {/* Mobile Menu */}
       <div
         className={`lg:hidden w-full bg-gray-100 p-4 rounded-lg shadow-lg mt-4 ${
           menuOpen ? "" : "hidden"
@@ -93,8 +87,9 @@ const NavBar = () => {
         {List}
       </div>
 
+      {/* Navbar End */}
       <div className="navbar-end flex items-center space-x-4">
-        {/* Theme Change */}
+        {/* Theme Toggle */}
         <label className="grid cursor-pointer place-items-center">
           <input
             type="checkbox"
@@ -132,46 +127,40 @@ const NavBar = () => {
           </svg>
         </label>
 
+        {/* User Authentication Menu */}
         {/* User Profile and Authentication Menu */}
-        {}
-        <div className="dropdown dropdown-end relative">
-          <div
-            tabIndex="0"
-            role="button"
-            className="btn btn-ghost btn-circle avatar hover:scale-110 transition-all duration-300"
-          >
-            <div className="w-10 rounded-full border-2 border-yellow-400">
-              {loading ? (
-                <img
-                  alt="Default Profile"
-                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                />
-              ) : user && user?.photoURL ? (
-                <img src={user.photoURL} alt="Profile" />
-              ) : (
-                <img
-                  alt="Default Profile"
-                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                />
-              )}
-            </div>
-          </div>
+        <div className="relative">
+          {user ? (
+            // User is logged in, show profile picture and dropdown
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex="0"
+                role="button"
+                className="btn btn-ghost btn-circle avatar hover:scale-110 transition-all duration-300"
+              >
+                <div className="w-10 rounded-full border-2 border-yellow-400">
+                  {user.photoURL ? (
+                    <img src={user.photoURL} alt="Profile" />
+                  ) : (
+                    <img
+                      alt="Default Profile"
+                      src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                    />
+                  )}
+                </div>
+              </div>
 
-          {/* Profile Tooltip */}
-          {user && user.displayName && (
-            <div
-              className="tooltip tooltip-bottom"
-              data-tip={user.displayName}
-            ></div>
-          )}
+              {/* Profile Tooltip */}
+              <div
+                className="tooltip tooltip-bottom"
+                data-tip={user.displayName || "User"}
+              ></div>
 
-          {/* Dropdown Menu */}
-          <ul
-            tabIndex="0"
-            className="menu menu-sm z-[1000] absolute dropdown-content bg-white rounded-lg mt-3 w-48 p-2 shadow-lg transition-all duration-300"
-          >
-            {user ? (
-              <>
+              {/* Dropdown Menu */}
+              <ul
+                tabIndex="0"
+                className="menu menu-sm z-[1000] absolute dropdown-content bg-white rounded-lg mt-3 w-48 p-2 shadow-lg transition-all duration-300"
+              >
                 <li className="font-semibold">{user.displayName}</li>
                 <li className="font-semibold">
                   <button
@@ -181,28 +170,25 @@ const NavBar = () => {
                     Logout
                   </button>
                 </li>
-              </>
-            ) : (
-              <div className="flex flex-col gap-2">
-                <li>
-                  <Link
-                    className="w-full py-3 px-5 text-base font-semibold text-white rounded-md bg-[#fbbd05] hover:bg-[#e6a800] transition-all duration-300 shadow-md"
-                    to="/auth/login"
-                  >
-                    Login
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/auth/register"
-                    className="w-full py-3 px-5 text-base font-semibold text-[#fbbd05] border-2 border-[#fbbd05] rounded-md bg-white hover:bg-[#fbbd05] hover:text-white transition-all duration-300 shadow-md"
-                  >
-                    Register
-                  </Link>
-                </li>
-              </div>
-            )}
-          </ul>
+              </ul>
+            </div>
+          ) : (
+            // User is not logged in, show Login button
+            <div className="space-x-3 flex">
+              <Link
+                to="/auth/login"
+                className="py-2 px-4 text-sm font-medium text-gray-800 bg-yellow-400 rounded-lg shadow-md border border-yellow-500 hover:bg-yellow-500 hover:text-white transition-all duration-200"
+              >
+                Login
+              </Link>
+              <Link
+                to="/auth/register"
+                className="py-2 px-4 text-sm font-medium text-white bg-gray-800 rounded-lg shadow-md border border-gray-700 hover:bg-gray-700 hover:border-gray-600 transition-all duration-200"
+              >
+                Register
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>

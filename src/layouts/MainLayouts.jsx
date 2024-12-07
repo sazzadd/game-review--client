@@ -42,13 +42,13 @@ const MainLayouts = () => {
             delaySpeed={1500}
           />
         </h2>
-        <p className="mt-2 text-gray-300">
+        <p className="mt-8 text-gray-300">
           Explore the top-rated games based on user reviews!
         </p>
       </div>
 
       {/* Reviews Grid */}
-      <div className="w-10/12 mx-auto">
+      <div className="w-10/12 pb-12 mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {topRatedReviews.map((review) => (
             <ReviewCard key={review._id} reviews={review} />
