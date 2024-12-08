@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import NavBar from "../components/NavBar";
 import ReviewCard from "../components/ReviewCard";
 
 const AllReviews = () => {
@@ -81,12 +82,12 @@ const AllReviews = () => {
 
       {/* Content */}
       <div className="relative z-10 mx-auto w-11/12">
+        <NavBar></NavBar>
         {/* Page Title */}
-        <h1 className="text-4xl font-extrabold text-center mb-8 text-yellow-400 tracking-widest">
+        <h1 className="text-4xl font-extrabold text-center mt-4 mb-8 text-yellow-400 tracking-widest">
           All Game Reviews ({filteredReviews.length})
           <div className="h-1 w-32 bg-yellow-400 mx-auto mt-2"></div>
         </h1>
-    
 
         {/* Filter and Sort Controls */}
         <div className="mb-6 text-center space-x-4">

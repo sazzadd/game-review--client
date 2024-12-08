@@ -1,9 +1,7 @@
 import React, { useContext } from "react";
-import { HiMenu } from "react-icons/hi";
-import { IoGameController } from "react-icons/io5";
+import { IoLogoGameControllerB } from "react-icons/io";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
-
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = React.useState(false); // Track mobile menu state
   const { user, handleLogOut } = useContext(AuthContext);
@@ -54,42 +52,84 @@ const NavBar = () => {
   );
 
   return (
-    <div className="navbar bg-gray-100 transition-all duration-500 w-11/12 mx-auto rounded-lg shadow-lg">
-      {/* Navbar Start */}
-      <div className="navbar-start flex items-center justify-between w-full">
-        {/* Mobile Menu Icon */}
-        <div className="lg:hidden">
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="text-2xl text-[#fbbd05] hover:text-[#d99d04] transition-all duration-300"
+    <div className="navbar bg-base-100 rounded-xl w-11/12 mx-auto">
+      <div className="navbar-start">
+        <div className="dropdown">
+          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h8m-8 6h16"
+              />
+            </svg>
+          </div>
+          <ul
+            tabIndex={0}
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[100] mt-3 w-52 p-2 shadow"
           >
-            <HiMenu />
-          </button>
+            <li>
+              <NavLink
+                to="/"
+                className="text-[#fbbd05] hover:text-[#d99d04] font-semibold transition-all duration-300"
+              >
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/allReviews"
+                className="text-[#fbbd05] hover:text-[#d99d04] font-semibold transition-all duration-300"
+              >
+                All Reviews
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/addReview"
+                className="text-[#fbbd05] hover:text-[#d99d04] font-semibold transition-all duration-300"
+              >
+                Add Review
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/myReview"
+                className="text-[#fbbd05] hover:text-[#d99d04] font-semibold transition-all duration-300"
+              >
+                My Reviews
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/watchList"
+                className="text-[#fbbd05] hover:text-[#d99d04] font-semibold transition-all duration-300"
+              >
+                Watch List
+              </NavLink>
+            </li>
+          </ul>
         </div>
-        {/* Brand Name */}
-        <div className="flex items-center">
-          <IoGameController className="text-3xl hidden md:block text-[#fbbd05] mr-2 transition-all duration-300 hover:scale-110" />
-          <a className="btn hidden md:block lg:block btn-ghost text-2xl font-bold text-[#fbbd05] hover:text-[#d99d04] transition-all duration-300">
-            Chill Gamer
-          </a>
-        </div>
+        <a className="btn btn-ghost text-xl">
+          <IoLogoGameControllerB className="text-[#fbbd05]" />
+          <span>
+            <span className="text-[#d99d04]">Chill</span>{" "}
+            <span className="text-[#fbbd05]">gamer</span>
+          </span>
+        </a>
       </div>
-
-      {/* Center Navigation Links */}
-      <div className="navbar-center hidden lg:flex">{List}</div>
-
-      {/* Mobile Menu */}
-      <div
-        className={`lg:hidden w-full bg-gray-100 p-4 rounded-lg shadow-lg mt-4 ${
-          menuOpen ? "" : "hidden"
-        }`}
-      >
-        {List}
+      <div className="navbar-center hidden lg:flex">
+        <ul className="menu menu-horizontal px-1">{List}</ul>
       </div>
-
-      {/* Navbar End */}
-      <div className="navbar-end flex items-center space-x-4">
-        {/* Theme Toggle */}
+      <div className="navbar-end">
+        {/* theme controller start*/}
         <label className="grid cursor-pointer place-items-center">
           <input
             type="checkbox"
@@ -126,10 +166,8 @@ const NavBar = () => {
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
           </svg>
         </label>
-
-        {/* User Authentication Menu */}
-        {/* User Profile and Authentication Menu */}
-        <div className="relative">
+        {/*  */}
+        <div className="relative ml-3">
           {user ? (
             // User is logged in, show profile picture and dropdown
             <div className="dropdown dropdown-end">

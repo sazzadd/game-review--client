@@ -29,7 +29,7 @@ const MainLayouts = () => {
       </section>
 
       {/* Highest rated card section */}
-      <div className="text-center mb-8">
+      <div className="text-center mt-8 pt-6 mb-8">
         <h2 className="text-3xl font-bold text-yellow-400">
           {/* Using Typewriter for animated text */}
           <Typewriter
@@ -42,7 +42,7 @@ const MainLayouts = () => {
             delaySpeed={1500}
           />
         </h2>
-        <p className="mt-8 text-gray-300">
+        <p className="mt-4 pb-6 text-gray-300">
           Explore the top-rated games based on user reviews!
         </p>
       </div>
