@@ -33,11 +33,7 @@ const UpdateReview = () => {
       userName,
     };
 
-    console.log(
-      "Submitted Review Data:",
-
-      review
-    );
+   
     fetch(`https://game-reviw-site.vercel.app/review/${_id}`, {
       method: "PUT",
       headers: {
@@ -47,7 +43,7 @@ const UpdateReview = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+ 
         if (data.modifiedCount > 0) {
           Swal.fire({
             title: "success!",

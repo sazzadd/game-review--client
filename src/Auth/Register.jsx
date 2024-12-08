@@ -37,18 +37,18 @@ const Register = () => {
       return; // Stop the form submission if validation fails
     }
 
-    console.log(email, password, name, photo); // Debug log to check values
+
     createNewUser(email, password)
       .then((result) => {
         const user = result.user;
         setUser(user);
 
         // Debug log to verify photo URL
-        console.log("Photo URL:", photo);
+
 
         updateUserProfile({ displayName: name, photoURL: photo })
           .then(() => {
-            console.log("User profile updated", user);
+  
             toast.success("Registration successful!");
             setTimeout(() => {
               navigate("/");

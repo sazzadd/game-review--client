@@ -15,7 +15,7 @@ const ReviewDetails = () => {
   if (!review) {
     return <div className="text-center text-gray-500">Review not found</div>;
   }
-  console.log(user.email);
+
   const email = user.email;
   // Destructure review data
   const {
