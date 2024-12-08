@@ -45,7 +45,7 @@ const ReviewDetails = () => {
       userName,
     };
 
-    fetch("http://localhost:5000/watchList", {
+    fetch("https://game-reviw-site.vercel.app/watchList", {
       method: "POST",
       headers: {
         "content-type": "application/json",

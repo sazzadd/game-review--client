@@ -16,12 +16,12 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayouts></MainLayouts>,
-    loader: () => fetch("http://localhost:5000/review"),
+    loader: () => fetch("https://game-reviw-site.vercel.app/review"),
   },
   {
     path: "/allReviews",
     element: <AllReviews></AllReviews>,
-    loader: () => fetch("http://localhost:5000/review"),
+    loader: () => fetch("https://game-reviw-site.vercel.app/review"),
   },
   {
     path: "/ReviewDetail/:_id",
@@ -30,9 +30,9 @@ const router = createBrowserRouter([
         <ReviewDetails></ReviewDetails>
       </PrivateRoute>
     ),
-    // loader: ({ params }) => fetch(`https://coffee-store-server-eight-ashy.vercel.app/coffee/${params.id}`),
+
     loader: ({ params }) =>
-      fetch(`http://localhost:5000/review/${params._id}`)
+      fetch(`https://game-reviw-site.vercel.app/review/${params._id}`)
         .then((response) => response.json())
         .then((data) => data),
   },
@@ -67,7 +67,7 @@ const router = createBrowserRouter([
         <MyReviews></MyReviews>
       </PrivateRoute>
     ),
-    loader: () => fetch("http://localhost:5000/review"),
+    loader: () => fetch("https://game-reviw-site.vercel.app/review"),
   },
   {
     path: "/watchList",
@@ -78,12 +78,13 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
 
-    loader: () => fetch("http://localhost:5000/watchList"),
+    loader: () => fetch("https://game-reviw-site.vercel.app/watchList"),
   },
   {
     path: "/updateReview/:_id",
     element: <UpdateReview />,
-    loader: ({ params }) => fetch(`http://localhost:5000/review/${params._id}`),
+    loader: ({ params }) =>
+      fetch(`https://game-reviw-site.vercel.app/review/${params._id}`),
   },
   {
     path: "*",

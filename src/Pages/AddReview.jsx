@@ -37,7 +37,7 @@ const AddReview = () => {
       userName,
     };
 
-    fetch("http://localhost:5000/review", {
+    fetch("https://game-reviw-site.vercel.app/review", {
       method: "POST",
       headers: {
         "content-type": "application/json",

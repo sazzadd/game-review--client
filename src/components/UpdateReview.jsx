@@ -13,9 +13,8 @@ const UpdateReview = () => {
     e.preventDefault();
     const form = e.target;
 
-    // ইউজারের তথ্য সংগ্রহ করা (যদি ইউজার লগ ইন থাকে)
-    const userEmail = user?.email || "Guest"; // যদি `user` না থাকে, তাহলে 'Guest' ডিফল্ট
-    const userName = user?.displayName || "Anonymous"; // একইভাবে নামও চেক করা
+    const userEmail = user?.email || "Guest";
+    const userName = user?.displayName || "Anonymous"; 
 
     const gameCover = form.gameCover.value;
     const gameTitle = form.gameTitle.value;
@@ -36,17 +35,10 @@ const UpdateReview = () => {
 
     console.log(
       "Submitted Review Data:",
-      // gameCover,
-      // gameTitle,
-      // reviewDescription,
-      // rating,
-      // publishingYear,
-      // genre,
-      // userEmail,
-      // userName
+
       review
     );
-    fetch(`http://localhost:5000/review/${_id}`, {
+    fetch(`https://game-reviw-site.vercel.app/review/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

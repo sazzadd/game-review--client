@@ -4,7 +4,7 @@
 
 ## 🌐 Live Site URL
 
-[Live Site](https://your-live-site-url.com) _(Replace with your actual live site URL)_
+[Live Site](https://game-review-a10.web.app/) _(https://game-review-a10.web.app/)_
 
 ## ✨ Features:
 
@@ -29,6 +29,6 @@
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/chill-gamer.git
+   git clone https://github.com/programming-hero-web-course2/b10-a10-client-side-sazzadd.git
    cd chill-gamer
    ```
