@@ -9,17 +9,17 @@ const Slider = () => {
   const sliderData = [
     {
       image:
-        "https://wallpapers.com/images/featured/free-fire-gi0jpopdq4b0q5aj.jpg",
+        "https://i.ibb.co.com/bWTsQc5/free-fire-gi0jpopdq4b0q5aj.jpg",
       title: "Game Review 1",
     },
     {
       image:
-        "https://dl.memuplay.com/new_market/img/com.tencent.ig.sc0.2021-04-23-14-11-17.jpg",
+        "https://i.ibb.co.com/7tTzqXc/com-tencent-ig-sc0-2021-04-23-14-11-17.jpg",
       title: "Game Review 2",
     },
     {
       image:
-        "https://wallpapers.com/images/hd/action-games-1920-x-1080-wallpaper-em1gvdroqkkyzptx.jpg",
+        "https://i.ibb.co.com/s60mJtn/action-games-1920-x-1080-wallpaper-em1gvdroqkkyzptx.jpg",
       title: "Game Review 3",
     },
   ];

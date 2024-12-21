@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import React, { useEffect, useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const Faq = () => {
@@ -47,7 +47,7 @@ const Faq = () => {
       className="relative bg-cover bg-center py-20"
       style={{
         backgroundImage:
-          "url('https://e0.pxfuel.com/wallpapers/71/397/desktop-wallpaper-halo-wars-2-2017-games-concept-art-halo-reach-background-halo-fan-art.jpg')",
+          "url('https://i.ibb.co.com/c6DGJKJ/desktop-wallpaper-halo-wars-2-2017-games-concept-art-halo-reach-background-halo-fan-art.jpg')",
       }}
     >
       {/* Dark overlay */}

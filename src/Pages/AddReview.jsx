@@ -9,7 +9,7 @@ const AddReview = () => {
   const [startDate, setStartDate] = useState(new Date());
   const genres = ["Action", "RPG", "Adventure", "Puzzle", "Horror"]; // Genre options
 
-  // `user` কে `AuthContext` থেকে নিয়ে আসা
+
   const { user } = useContext(AuthContext);
 
   const handleAddReview = (e) => {
@@ -63,7 +63,7 @@ const AddReview = () => {
       className="bg-cover bg-center backdrop-blur-md min-h-screen pb-2"
       style={{
         backgroundImage:
-          "url('https://assets.rockpapershotgun.com/images/2020/02/Vanquish-Best-Action-Games-2020.jpg')",
+          "url('https://i.ibb.co.com/vcPdRbN/Vanquish-Best-Action-Games-2020.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backdropFilter: "blur(10px)",

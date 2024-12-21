@@ -14,7 +14,7 @@ const UpdateReview = () => {
     const form = e.target;
 
     const userEmail = user?.email || "Guest";
-    const userName = user?.displayName || "Anonymous"; 
+    const userName = user?.displayName || "Anonymous";
 
     const gameCover = form.gameCover.value;
     const gameTitle = form.gameTitle.value;
@@ -33,7 +33,6 @@ const UpdateReview = () => {
       userName,
     };
 
-   
     fetch(`https://game-reviw-site.vercel.app/review/${_id}`, {
       method: "PUT",
       headers: {
@@ -43,7 +42,6 @@ const UpdateReview = () => {
     })
       .then((res) => res.json())
       .then((data) => {
- 
         if (data.modifiedCount > 0) {
           Swal.fire({
             title: "success!",
@@ -61,7 +59,7 @@ const UpdateReview = () => {
       className="bg-cover bg-center backdrop-blur-md min-h-screen p-8"
       style={{
         backgroundImage:
-          "url('https://us.123rf.com/450wm/inueng/inueng2104/inueng210400066/167337674-neon-game-controller-or-joystick-for-game-console-on-blue-background.jpg?ver=6')",
+          "url('https://i.ibb.co.com/y69W7K3/167337674-neon-game-controller-or-joystick-for-game-console-on-blue-background.jpg')",
       }}
     >
       <div className="bg-opacity-60 bg-black p-8 rounded-md max-w-3xl mx-auto">

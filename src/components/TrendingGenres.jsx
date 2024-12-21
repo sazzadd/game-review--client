@@ -5,27 +5,27 @@ const TrendingGenres = () => {
       description:
         "Thrilling games packed with intense action and epic adventures.",
       image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNLoIPuAyR7YBUJ9l_MJ33FHQVbSojcrKDbg&s",
+        "https://i.ibb.co.com/xjSjWY5/images.jpg",
     },
     {
       name: "RPG",
       description:
         "Dive into immersive worlds and character-driven storytelling.",
       image:
-        "https://i.ytimg.com/vi/yuTIyYrAcXY/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAuYGNyepwPCVfGZRze8s0nh5-ssg",
+        "https://i.ibb.co.com/x3Dmbkw/hq720.jpg",
     },
     {
       name: "Simulation",
       description: "Experience realistic gameplay with simulation-style games.",
       image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLKytEgfj0iBo_q7drXYqeF5QIsMhYtcfXGA&s",
+        "https://i.ibb.co.com/L5dckvC/images-1.jpg",
     },
     {
       name: "Adventure",
       description:
         "Play your favorite Adventure with realistic mechanics and visuals.",
       image:
-        "https://static1.thegamerimages.com/wordpress/wp-content/uploads/2024/02/mixcollage-09-feb-2024-11-03-am-5620.jpg",
+        "https://i.ibb.co.com/XzVCQ5S/images-2.jpg",
     },
   ];
 

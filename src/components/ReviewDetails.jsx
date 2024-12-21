@@ -5,6 +5,7 @@ import { GiLaurels } from "react-icons/gi";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
+import NavBar from "./NavBar";
 
 const ReviewDetails = () => {
   const { user } = useContext(AuthContext);
@@ -25,7 +26,6 @@ const ReviewDetails = () => {
     rating,
     publishingYear,
     genre,
-
     userEmail,
     userName,
   } = review;
@@ -77,8 +77,23 @@ const ReviewDetails = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6 md:flex md:flex-row md:space-x-8 border border-gray-300">
+    <div
+      className="relative min-h-screen p-6"
+      style={{
+        backgroundImage: `url(${gameCover})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black bg-opacity-70"></div>
+      <div className="pb-8">
+        <NavBar></NavBar>
+      </div>
+
+      {/* Content */}
+      <div className="relative max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6 md:flex md:flex-row md:space-x-8 border border-gray-300 bg-opacity-90">
         <div className="w-full md:w-1/3 border border-gray-300 rounded-lg shadow-md">
           <img
             src={gameCover}

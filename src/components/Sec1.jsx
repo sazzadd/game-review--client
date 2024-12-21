@@ -5,7 +5,7 @@ const Sec1 = () => {
     <div
       className="relative h-screen bg-cover bg-center"
       style={{
-        backgroundImage: `url(https://e1.pxfuel.com/desktop-wallpaper/296/166/desktop-wallpaper-god-of-war-2022-%E2%80%A2-for-you-video-games-2022-thumbnail.jpg)`,
+        backgroundImage: `url(https://i.ibb.co.com/dMDpss4/desktop-wallpaper-god-of-war-2022-for-you-video-games-2022-thumbnail.jpg)`,
       }}
     >
       {/* Overlay */}

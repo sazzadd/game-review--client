@@ -73,8 +73,8 @@ const AllReviews = () => {
     <div
       className="relative px-4 py-8 mx-auto min-h-screen bg-cover bg-center"
       style={{
-        backgroundImage: `url('https://i.ytimg.com/vi/KV4alrgL6PQ/maxresdefault.jpg')`,
-        backgroundAttachment: "fixed", // Background stays fixed
+        backgroundImage: `url('https://i.ibb.co.com/XDZNtQX/maxresdefault.jpg')`,
+        backgroundAttachment: "fixed",
       }}
     >
       {/* Gradient Overlay */}
