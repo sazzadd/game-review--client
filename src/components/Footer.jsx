@@ -1,5 +1,5 @@
 import React from "react";
-import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaYoutube } from "react-icons/fa";
+import { FaFacebook, FaGithub, FaInstagram, FaLinkedin, FaTwitter, FaYoutube } from "react-icons/fa";
 import { IoGameController } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
@@ -33,19 +33,13 @@ const Footer = () => {
       {/* Social Media Icons */}
       <div className="flex space-x-4 ">
         <a
-          href="https://facebook.com"
+          href="https://www.facebook.com/sazzad.ad0r/"
           className="text-white hover:text-[#fbbd05] transition-colors duration-300"
           aria-label="Facebook"
         >
           <FaFacebook size={20} />
         </a>
-        <a
-          href="https://linkedin.com"
-          className="text-white hover:text-[#fbbd05] transition-colors duration-300"
-          aria-label="LinkedIn"
-        >
-          <FaInstagram size={20} />
-        </a>
+        
         <a
           href="https://twitter.com"
           className="text-white hover:text-[#fbbd05] transition-colors duration-300"
@@ -54,11 +48,11 @@ const Footer = () => {
           <FaTwitter size={20} />
         </a>
         <a
-          href="https://youtube.com"
+          href="https://github.com/sazzadd"
           className="text-white hover:text-[#fbbd05] transition-colors duration-300"
           aria-label="YouTube"
         >
-          <FaYoutube size={20} />
+          <FaGithub size={20} />
         </a>
       </div>
 
