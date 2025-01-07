@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { IoLogoGameControllerB } from "react-icons/io";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
+
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = React.useState(false); // Track mobile menu state
   const { user, handleLogOut } = useContext(AuthContext);
@@ -24,30 +25,34 @@ const NavBar = () => {
           All Reviews
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/addReview"
-          className="text-[#fbbd05] hover:text-[#d99d04] font-semibold transition-all duration-300"
-        >
-          Add Review
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/myReview"
-          className="text-[#fbbd05] hover:text-[#d99d04] font-semibold transition-all duration-300"
-        >
-          My Reviews
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/watchList"
-          className="text-[#fbbd05] hover:text-[#d99d04] font-semibold transition-all duration-300"
-        >
-          Watch List
-        </NavLink>
-      </li>
+      {user && (
+        <>
+          <li>
+            <NavLink
+              to="/addReview"
+              className="text-[#fbbd05] hover:text-[#d99d04] font-semibold transition-all duration-300"
+            >
+              Add Review
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/myReview"
+              className="text-[#fbbd05] hover:text-[#d99d04] font-semibold transition-all duration-300"
+            >
+              My Reviews
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/watchList"
+              className="text-[#fbbd05] hover:text-[#d99d04] font-semibold transition-all duration-300"
+            >
+              Watch List
+            </NavLink>
+          </li>
+        </>
+      )}
     </ul>
   );
 
@@ -91,30 +96,34 @@ const NavBar = () => {
                 All Reviews
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                to="/addReview"
-                className="text-[#fbbd05] hover:text-[#d99d04] font-semibold transition-all duration-300"
-              >
-                Add Review
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/myReview"
-                className="text-[#fbbd05] hover:text-[#d99d04] font-semibold transition-all duration-300"
-              >
-                My Reviews
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/watchList"
-                className="text-[#fbbd05] hover:text-[#d99d04] font-semibold transition-all duration-300"
-              >
-                Watch List
-              </NavLink>
-            </li>
+            {user && (
+              <>
+                <li>
+                  <NavLink
+                    to="/addReview"
+                    className="text-[#fbbd05] hover:text-[#d99d04] font-semibold transition-all duration-300"
+                  >
+                    Add Review
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/myReview"
+                    className="text-[#fbbd05] hover:text-[#d99d04] font-semibold transition-all duration-300"
+                  >
+                    My Reviews
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/watchList"
+                    className="text-[#fbbd05] hover:text-[#d99d04] font-semibold transition-all duration-300"
+                  >
+                    Watch List
+                  </NavLink>
+                </li>
+              </>
+            )}
           </ul>
         </div>
         <a className="btn btn-ghost text-xl">
@@ -129,7 +138,7 @@ const NavBar = () => {
         <ul className="menu menu-horizontal px-1">{List}</ul>
       </div>
       <div className="navbar-end">
-        {/* theme controller start*/}
+        {/* থিম টগলার */}
         <label className="grid cursor-pointer place-items-center">
           <input
             type="checkbox"
@@ -166,10 +175,9 @@ const NavBar = () => {
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
           </svg>
         </label>
-        {/*  */}
+        {/* থিম টগলার শেষ */}
         <div className="relative ml-3">
           {user ? (
-            // User is logged in, show profile picture and dropdown
             <div className="dropdown dropdown-end">
               <div
                 tabIndex="0"
@@ -187,14 +195,6 @@ const NavBar = () => {
                   )}
                 </div>
               </div>
-
-              {/* Profile Tooltip */}
-              <div
-                className="tooltip tooltip-bottom"
-                data-tip={user.displayName || "User"}
-              ></div>
-
-              {/* Dropdown Menu */}
               <ul
                 tabIndex="0"
                 className="menu menu-sm z-[1000] absolute dropdown-content bg-white rounded-lg mt-3 w-48 p-2 shadow-lg transition-all duration-300"
@@ -211,7 +211,6 @@ const NavBar = () => {
               </ul>
             </div>
           ) : (
-            // User is not logged in, show Login button
             <div className="space-x-3 flex">
               <Link
                 to="/auth/login"
