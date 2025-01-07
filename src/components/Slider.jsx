@@ -29,7 +29,7 @@ const Slider = () => {
       className="slider-container"
       style={{
         width: "100%",
-        maxWidth: "1200px",
+        maxWidth: "1285px",
         margin: "20px auto",
         backgroundColor: "rgba(251, 189, 5, 0.5)",
         padding: "20px",
