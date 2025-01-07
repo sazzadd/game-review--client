@@ -5,6 +5,8 @@ import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const Faq = () => {
   const [openIndex, setOpenIndex] = useState(null);
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
@@ -12,6 +14,16 @@ const Faq = () => {
 
   const toggleAccordion = (index) => {
     setOpenIndex(openIndex === index ? null : index);
+  };
+
+  const handleNewsletterSubmit = (e) => {
+    e.preventDefault();
+    if (email) {
+      setMessage("Thank you for subscribing!");
+      setEmail(""); // Clear input after submission
+    } else {
+      setMessage("Please enter a valid email.");
+    }
   };
 
   const faqs = [
@@ -54,6 +66,7 @@ const Faq = () => {
       <div className="absolute inset-0 bg-black opacity-50"></div>
 
       <div className="relative max-w-4xl mx-auto px-6 text-white">
+        {/* FAQ Section */}
         <h2
           className="text-3xl font-semibold text-center mb-8 text-yellow-400"
           data-aos="fade-down"
@@ -86,6 +99,41 @@ const Faq = () => {
               )}
             </div>
           ))}
+        </div>
+
+        {/* Newsletter Subscription Section */}
+        <div className="text-center mt-12">
+          <h3 className="text-3xl font-semibold text-center  text-yellow-400">
+            Subscribe to Our Newsletter
+          </h3>
+          <p className="mt-4 text-gray-300">
+            Get the latest updates on new game releases and reviews delivered
+            straight to your inbox!
+          </p>
+          <form
+            onSubmit={handleNewsletterSubmit}
+            className="mt-6 flex justify-center items-center gap-4"
+          >
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+              className="px-4 py-2 rounded-md text-black"
+              required
+            />
+            <button
+              type="submit"
+              className="bg-yellow-400 text-black px-6 py-2 rounded-md hover:bg-yellow-500 transition duration-300"
+            >
+              Subscribe
+            </button>
+          </form>
+          {message && (
+            <div className="mt-4 text-gray-400">
+              <p>{message}</p>
+            </div>
+          )}
         </div>
       </div>
     </div>

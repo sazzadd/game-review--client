@@ -58,6 +58,7 @@ const MainLayouts = () => {
       {/* EXTAR SECTION 1 */}
       <TrendingGenres></TrendingGenres>
       <Faq></Faq>
+
       {/* Footer */}
       <Footer />
     </div>
