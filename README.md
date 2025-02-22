@@ -4,7 +4,7 @@
 
 ## 🌐 Live Site URL
 
-[Live Site](https://game-review-a10.web.app/) _(https://game-review-a10.web.app/)_
+[Live Site](b10a10-chill-gamer.surge.sh) _(b10a10-chill-gamer.surge.sh)_
 
 ## ✨ Features:
 
